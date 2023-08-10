@@ -28,7 +28,4 @@ object:
 	mkdir -p $@
 
 clean:
-	rm $(BINARY) $(OBJECTS) $(DEPS)
-
-list:
-	echo $(CFILES)
+	rm -rf $(BINARY) $(OBJECTS) $(DEPS) $(TARGETDIR)
