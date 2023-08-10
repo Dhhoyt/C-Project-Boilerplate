@@ -13,19 +13,28 @@ CFILES = $(foreach D,$(CODEDIRS),$(wildcard $(D)/*.c))
 OBJECTS = $(patsubst src/%,$(OBJECTDIR)/%,$(patsubst %.c,%.o,$(CFILES)))
 DEPS = $(patsubst %.o,%.d,$(OBJECTS))
 
+GREEN = \033[1;32m
+BLUE = \033[1;34m
+ORANGE = \033[1;33m
+LIGHTPURPLE = \033[1;35m
+
 all: $(BINARY)
+	@echo -e "$(GREEN)Successfully Compiled"
 
 $(BINARY): $(OBJECTS) | target
-	$(CC) -o ./$(TARGETDIR)/$@ $^
+	@echo -e "$(BLUE)Linking"
+	@$(CC) -o ./$(TARGETDIR)/$@ $^
 
 target:
-	mkdir ./$(TARGETDIR)
+	@mkdir ./$(TARGETDIR)
 
 $(OBJECTDIR)/%.o: src/%.c | object
-	$(CC) $(CFLAGS) -c -o $@ $^
+	@echo -e "$(ORANGE)Compiling $(LIGHTPURPLE)'$^'"
+	@$(CC) $(CFLAGS) -c -o $@ $^
 
 object:
-	mkdir -p $@
+	@mkdir -p $@
 
 clean:
-	rm -rf $(BINARY) $(OBJECTDIR) $(DEPS) $(TARGETDIR)
+	@rm -rf $(BINARY) $(OBJECTDIR) $(DEPS) $(TARGETDIR)
+	@echo -e "$(GREEN)All Clean"
