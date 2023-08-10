@@ -19,7 +19,7 @@ ORANGE = \033[1;33m
 LIGHTPURPLE = \033[1;35m
 
 all: $(BINARY)
-	@echo -e "$(GREEN)Successfully Compiled"
+	@echo -e "$(GREEN)Successfully Compiled :3"
 
 $(BINARY): $(OBJECTS) | target
 	@echo -e "$(BLUE)Linking"
