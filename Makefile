@@ -28,4 +28,4 @@ object:
 	mkdir -p $@
 
 clean:
-	rm -rf $(BINARY) $(OBJECTS) $(DEPS) $(TARGETDIR)
+	rm -rf $(BINARY) $(OBJECTDIR) $(DEPS) $(TARGETDIR)
