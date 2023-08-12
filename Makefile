@@ -4,9 +4,9 @@ INCDIRS = include
 OBJECTDIR = object
 TARGETDIR = target
 
-CC = gcc
-OPT = -O0
-DEPFLAGS = -MP -MD
+CC = g++
+OPT = -O3
+DEPFLAGS = -MP -MMD
 CFLAGS = -Wall -Wextra -g $(foreach D,$(INCDIRS),-I$(D)) $(OPT) $(DEPFLAGS)
 
 CFILES = $(foreach D,$(CODEDIRS),$(wildcard $(D)/*.c))
@@ -17,13 +17,14 @@ GREEN = \033[1;32m
 BLUE = \033[1;34m
 ORANGE = \033[1;33m
 LIGHTPURPLE = \033[1;35m
+WHITE = \033[1;37m
 
-all: $(BINARY)
+all: ./$(TARGETDIR)/$(BINARY)
 	@echo -e "$(GREEN)Successfully Compiled :3"
 
-$(BINARY): $(OBJECTS) | target
+./$(TARGETDIR)/$(BINARY): $(OBJECTS) | target
 	@echo -e "$(BLUE)Linking"
-	@$(CC) -o ./$(TARGETDIR)/$@ $^
+	@$(CC) -o $@ $^
 
 target:
 	@mkdir ./$(TARGETDIR)
@@ -38,3 +39,6 @@ object:
 clean:
 	@rm -rf $(BINARY) $(OBJECTDIR) $(DEPS) $(TARGETDIR)
 	@echo -e "$(GREEN)All Clean"
+
+uwu:
+	@echo -e "$(WHITE)owo"
